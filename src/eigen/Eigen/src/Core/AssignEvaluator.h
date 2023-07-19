@@ -530,7 +530,7 @@ struct dense_assignment_loop<Kernel, SliceVectorizedTraversal, NoUnrolling>
     const Scalar *dst_ptr = kernel.dstDataPtr();
     if((!bool(dstIsAligned)) && (UIntPtr(dst_ptr) % sizeof(Scalar))>0)
     {
-      // the pointer is not aligend-on scalar, so alignment is not possible
+      // the pointer is not aligned-on scalar, so alignment is not possible
       return dense_assignment_loop<Kernel,DefaultTraversal,NoUnrolling>::run(kernel);
     }
     const Index packetAlignedMask = packetSize - 1;
@@ -756,7 +756,7 @@ EIGEN_DEVICE_FUNC EIGEN_STRONG_INLINE void call_dense_assignment_loop(DstXprType
 // AssignmentKind must define a Kind typedef.
 template<typename DstShape, typename SrcShape> struct AssignmentKind;
 
-// Assignement kind defined in this file:
+// Assignment kind defined in this file:
 struct Dense2Dense {};
 struct EigenBase2EigenBase {};
 
@@ -831,7 +831,7 @@ void call_assignment_no_alias(Dst& dst, const Src& src, const Func& func)
   // TODO check whether this is the right place to perform these checks:
   EIGEN_STATIC_ASSERT_LVALUE(Dst)
   EIGEN_STATIC_ASSERT_SAME_MATRIX_SIZE(ActualDstTypeCleaned,Src)
-  EIGEN_CHECK_BINARY_COMPATIBILIY(Func,typename ActualDstTypeCleaned::Scalar,typename Src::Scalar);
+  EIGEN_CHECK_BINARY_COMPATIBILITY(Func,typename ActualDstTypeCleaned::Scalar,typename Src::Scalar);
   
   Assignment<ActualDstTypeCleaned,Src,Func>::run(actualDst, src, func);
 }
@@ -849,7 +849,7 @@ void call_assignment_no_alias_no_transpose(Dst& dst, const Src& src, const Func&
   // TODO check whether this is the right place to perform these checks:
   EIGEN_STATIC_ASSERT_LVALUE(Dst)
   EIGEN_STATIC_ASSERT_SAME_MATRIX_SIZE(Dst,Src)
-  EIGEN_CHECK_BINARY_COMPATIBILIY(Func,typename Dst::Scalar,typename Src::Scalar);
+  EIGEN_CHECK_BINARY_COMPATIBILITY(Func,typename Dst::Scalar,typename Src::Scalar);
 
   Assignment<Dst,Src,Func>::run(dst, src, func);
 }

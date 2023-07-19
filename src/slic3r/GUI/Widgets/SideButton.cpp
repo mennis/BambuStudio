@@ -9,8 +9,8 @@ EVT_LEFT_UP(SideButton::mouseReleased)
 EVT_PAINT(SideButton::paintEvent)
 END_EVENT_TABLE()
 
-SideButton::SideButton(wxWindow* parent, wxString text, wxString icon, long stlye, int iconSize)
-    : wxWindow(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, stlye)
+SideButton::SideButton(wxWindow* parent, wxString text, wxString icon, long style, int iconSize)
+    : wxWindow(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, style)
     , state_handler(this)
 {
     radius = 12;

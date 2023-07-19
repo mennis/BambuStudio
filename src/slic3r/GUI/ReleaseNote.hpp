@@ -24,7 +24,7 @@
 #include <wx/wrapsizer.h>
 #include <wx/event.h>
 
-#include "AmsMappingPopup.hpp"
+#include "AMSMappingPopup.hpp"
 #include "GUI_Utils.hpp"
 #include "wxExtensions.hpp"
 #include "DeviceManager.hpp"

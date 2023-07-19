@@ -81,7 +81,7 @@ class BackgroundSlicingProcess
 {
 public:
 	BackgroundSlicingProcess();
-	// Stop the background processing and finalize the bacgkround processing thread, remove temp files.
+	// Stop the background processing and finalize the background processing thread, remove temp files.
 	~BackgroundSlicingProcess();
 
 	void set_fff_print(Print *print) { m_fff_print = print; }
@@ -144,7 +144,7 @@ public:
 	bool 		empty() const;
 	// Validate the print. Returns an empty string if valid, returns an error message if invalid.
 	// Call validate before calling start().
-    StringObjectException validate(StringObjectException *warning = nullptr, Polygons* collison_polygons = nullptr, std::vector<std::pair<Polygon, float>>* height_polygons = nullptr);
+    StringObjectException validate(StringObjectException *warning = nullptr, Polygons* _collision_polygons = nullptr, std::vector<std::pair<Polygon, float>>* height_polygons = nullptr);
 
 	// Set the export path of the G-code.
 	// Once the path is set, the G-code
@@ -195,7 +195,7 @@ private:
 	void 	thread_proc_safe() throw();
 #ifdef _WIN32
 	// Wrapper for Win32 structured exceptions. Win32 structured exception blocks and C++ exception blocks cannot be mixed in the same function.
-	// Catch a SEH exception and return its ID or zero if no SEH exception has been catched.
+	// Catch a SEH exception and return its ID or zero if no SEH exception has been caught.
 	unsigned long 	thread_proc_safe_seh() throw();
 	// Calls thread_proc_safe_seh(), rethrows a Slic3r::HardCrash exception based on SEH exception
 	// returned by thread_proc_safe_seh() and lets wxApp::OnUnhandledException() display it.

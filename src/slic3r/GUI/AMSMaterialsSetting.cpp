@@ -731,11 +731,11 @@ void AMSMaterialsSetting::on_select_filament(wxCommandEvent &evt)
                 bool in_blacklist = false;
                 std::string action;
                 std::string info;
-                std::string filamnt_type;
-                it->get_filament_type(filamnt_type);
+                std::string filament_type;
+                it->get_filament_type(filament_type);
 
                 if (it->vendor) {
-                    DeviceManager::check_filaments_in_blacklist(it->vendor->name, filamnt_type, in_blacklist, action, info);
+                    DeviceManager::check_filaments_in_blacklist(it->vendor->name, filament_type, in_blacklist, action, info);
                 }
                 
                 if (in_blacklist) {

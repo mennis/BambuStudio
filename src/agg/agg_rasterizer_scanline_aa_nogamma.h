@@ -9,7 +9,7 @@
 //
 //----------------------------------------------------------------------------
 //
-// The author gratefully acknowleges the support of David Turner, 
+// The author gratefully acknowledges the support of David Turner,
 // Robert Wilhelm, and Werner Lemberg - the authors of the FreeType 
 // libray - in producing this work. See http://www.freetype.org for details.
 //
@@ -39,7 +39,7 @@ namespace agg
 
 
     //-----------------------------------------------------------------cell_aa
-    // A pixel cell. There're no constructors defined and it was done 
+    // A pixel cell. There are no constructors defined and it was done
     // intentionally in order to avoid extra overhead when allocating an 
     // array of cells.
     struct cell_aa

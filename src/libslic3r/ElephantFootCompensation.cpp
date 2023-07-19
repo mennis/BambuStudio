@@ -358,9 +358,9 @@ std::vector<float> contour_distance2(const EdgeGrid::Grid &grid, const size_t id
 				return Vec2d(- v.y(), v.x());
 			}
 
-            static bool inside_corner(const EdgeGrid::Contour &contour, size_t i, const Point &pt_oposite)
+            static bool inside_corner(const EdgeGrid::Contour &contour, size_t i, const Point &pt_opposite)
             {
-                const Vec2d pt         = pt_oposite.cast<double>();
+                const Vec2d pt         = pt_opposite.cast<double>();
                 const Point &pt_prev   = contour.segment_prev(i);
                 const Point &pt_this   = contour.segment_start(i);
                 const Point &pt_next   = contour.segment_end(i);
@@ -372,9 +372,9 @@ std::vector<float> contour_distance2(const EdgeGrid::Grid &grid, const size_t id
                                             left_of_v1 || left_of_v2;                   // concave corner
             }
 
-            static bool left_of_segment(const EdgeGrid::Contour &contour, size_t i, const Point &pt_oposite)
+            static bool left_of_segment(const EdgeGrid::Contour &contour, size_t i, const Point &pt_opposite)
             {
-                const Vec2d  pt      = pt_oposite.cast<double>();
+                const Vec2d  pt      = pt_opposite.cast<double>();
                 const Point &pt_this = contour.segment_start(i);
                 const Point &pt_next = contour.segment_end(i);
                 Vec2d        v       = (pt_next - pt_this).cast<double>();

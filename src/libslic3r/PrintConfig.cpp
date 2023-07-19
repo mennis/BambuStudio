@@ -3122,7 +3122,7 @@ void PrintConfigDef::init_fff_params()
     def->category = L("Strength");
     def->tooltip = L("This option will auto detect narrow internal solid infill area."
                    " If enabled, concentric pattern will be used for the area to speed printing up."
-                   " Otherwise, rectilinear pattern is used defaultly.");
+                   " Otherwise, rectilinear pattern is used by default.");
     def->mode = comAdvanced;
     def->set_default_value(new ConfigOptionBool(true));
 }

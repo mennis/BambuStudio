@@ -102,7 +102,7 @@ std::map<int, std::string> cli_errors = {
     {CLI_FILELIST_INVALID_ORDER, "File list order invalid(please make sure 3mf in the first place)"},
     {CLI_CONFIG_FILE_ERROR, "Invalid config file, could not be parsed"},
     {CLI_DATA_FILE_ERROR, "Invalid model file, could not be loaded"},
-    {CLI_INVALID_PRINTER_TECH, "Invalid printer technoledge"},
+    {CLI_INVALID_PRINTER_TECH, "Invalid printer technology"},
     {CLI_UNSUPPORTED_OPERATION, "Unsupported operation"},
     {CLI_COPY_OBJECTS_ERROR, "Copy objects error"},
     {CLI_SCALE_TO_FIT_ERROR, "Scale to fit error"},
@@ -394,7 +394,7 @@ int CLI::run(int argc, char **argv)
 
     bool							start_gui			= m_actions.empty();
 
-    //BBS: remove GCodeViewer as seperate APP logic
+    //BBS: remove GCodeViewer as separate APP logic
     /*bool 							start_as_gcodeviewer =
 #ifdef _WIN32
             false;
@@ -1951,7 +1951,7 @@ int CLI::run(int argc, char **argv)
                                     outfile = outfile_dir + "/plate_" + std::to_string(index + 1) + ".gcode";
                                     part_plate->set_tmp_gcode_path(outfile);
                                 }
-                                BOOST_LOG_TRIVIAL(info) << "process finished, will export gcode temporily to " << outfile << std::endl;
+                                BOOST_LOG_TRIVIAL(info) << "process finished, will export gcode temporarily to " << outfile << std::endl;
                                 outfile = (dynamic_cast<Print*>(print))->export_gcode(outfile, gcode_result, nullptr);
                                 //outfile_final = (dynamic_cast<Print*>(print))->print_statistics().finalize_output_path(outfile);
                                 //m_fff_print->export_gcode(m_temp_output_path, m_gcode_result, [this](const ThumbnailsParams& params) { return this->render_thumbnails(params); });
@@ -2394,7 +2394,7 @@ bool CLI::setup(int argc, char **argv)
                 L"crashes or unexpected behaviour while using BambuStudio.\n"
                 L"For example, ASUS Sonic Studio injects a Nahimic driver, which makes BambuStudio "
                 L"to crash on a secondary monitor";
-        MessageBoxW(NULL, text.c_str(), L"Warning"/*L"Incopatible library found"*/, MB_OK);
+        MessageBoxW(NULL, text.c_str(), L"Warning"/*L"Incompatible library found"*/, MB_OK);
     }
 #endif
 
@@ -2480,7 +2480,7 @@ void CLI::print_help(bool include_print_options, PrinterTechnology printer_techn
 
     boost::nowide::cout
         << std::endl
-        << "Print settings priorites:" << std::endl
+        << "Print settings priorities:" << std::endl
         << "\t1) setting values from the command line (highest priority)"<< std::endl
         << "\t2) setting values loaded with --load_settings and --load_filaments" << std::endl
 	    << "\t3) setting values loaded from 3mf(lowest priority)" << std::endl;

@@ -333,7 +333,7 @@ static std::string appconfig_md5_hash_line(const std::string_view data)
     boost::algorithm::hex(md5_digest, md5_digest + std::size(md5_digest), std::back_inserter(md5_digest_str));
     // MD5 hash is 32 HEX digits long.
     assert(md5_digest_str.size() == 32);
-    // This line will be emited at the end of the file.
+    // This line will be emitted at the end of the file.
     return "# MD5 checksum " + md5_digest_str + "\n";
 }
 
@@ -426,7 +426,7 @@ std::string AppConfig::load()
                 boost::filesystem::remove(backup_path);
             }
             else {
-                BOOST_LOG_TRIVIAL(info) << format("Configuration file \"%1%\" was corrupted. It has been succesfully restored from the backup \"%2%\".", AppConfig::loading_path(), backup_path);
+                BOOST_LOG_TRIVIAL(info) << format("Configuration file \"%1%\" was corrupted. It has been successfully restored from the backup \"%2%\".", AppConfig::loading_path(), backup_path);
                 // Try parse configuration file after restore from backup.
                 j = json::parse(back_left_string);
                 recovered = true;
@@ -707,7 +707,7 @@ std::string AppConfig::load()
                 boost::filesystem::remove(backup_path);
             }
             else {
-                BOOST_LOG_TRIVIAL(info) << format("Configuration file \"%1%\" was corrupted. It has been succesfully restored from the backup \"%2%\".", AppConfig::loading_path(), backup_path);
+                BOOST_LOG_TRIVIAL(info) << format("Configuration file \"%1%\" was corrupted. It has been successfully restored from the backup \"%2%\".", AppConfig::loading_path(), backup_path);
                 // Try parse configuration file after restore from backup.
                 try {
                     ifs.open(AppConfig::loading_path());

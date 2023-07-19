@@ -386,7 +386,7 @@ std::array<float, 4> GLVolume::NEUTRAL_COLOR     = { 0.8f, 0.8f, 0.8f, 1.0f };
 std::array<float, 4> GLVolume::UNPRINTABLE_COLOR = { 0.0f, 0.0f, 0.0f, 0.5f };
 
 std::array<float, 4> GLVolume::MODEL_MIDIFIER_COL   = {1.0f, 1.0f, 0.0f, 0.6f};
-std::array<float, 4> GLVolume::MODEL_NEGTIVE_COL    = {0.3f, 0.3f, 0.3f, 0.4f};
+std::array<float, 4> GLVolume::MODEL_Negative_COL    = {0.3f, 0.3f, 0.3f, 0.4f};
 std::array<float, 4> GLVolume::SUPPORT_ENFORCER_COL = {0.3f, 0.3f, 1.0f, 0.4f};
 std::array<float, 4> GLVolume::SUPPORT_BLOCKER_COL  = {1.0f, 0.3f, 0.3f, 0.4f};
 
@@ -405,7 +405,7 @@ void GLVolume::update_render_colors()
     GLVolume::DISABLED_COLOR    = GLColor(RenderColor::colors[RenderCol_Model_Disable]);
     GLVolume::NEUTRAL_COLOR     = GLColor(RenderColor::colors[RenderCol_Model_Neutral]);
     GLVolume::MODEL_COLOR[0]    = GLColor(RenderColor::colors[RenderCol_Modifier]);
-    GLVolume::MODEL_COLOR[1]    = GLColor(RenderColor::colors[RenderCol_Negtive_Volume]);
+    GLVolume::MODEL_COLOR[1]    = GLColor(RenderColor::colors[RenderCol_Negative_Volume]);
     GLVolume::MODEL_COLOR[2]    = GLColor(RenderColor::colors[RenderCol_Support_Enforcer]);
     GLVolume::MODEL_COLOR[3]    = GLColor(RenderColor::colors[RenderCol_Support_Blocker]);
     GLVolume::UNPRINTABLE_COLOR = GLColor(RenderColor::colors[RenderCol_Model_Unprintable]);
@@ -417,7 +417,7 @@ void GLVolume::load_render_colors()
     RenderColor::colors[RenderCol_Model_Disable]    = IMColor(GLVolume::DISABLED_COLOR);
     RenderColor::colors[RenderCol_Model_Neutral]    = IMColor(GLVolume::NEUTRAL_COLOR);
     RenderColor::colors[RenderCol_Modifier]         = IMColor(GLVolume::MODEL_COLOR[0]);
-    RenderColor::colors[RenderCol_Negtive_Volume]   = IMColor(GLVolume::MODEL_COLOR[1]);
+    RenderColor::colors[RenderCol_Negative_Volume]   = IMColor(GLVolume::MODEL_COLOR[1]);
     RenderColor::colors[RenderCol_Support_Enforcer] = IMColor(GLVolume::MODEL_COLOR[2]);
     RenderColor::colors[RenderCol_Support_Blocker]  = IMColor(GLVolume::MODEL_COLOR[3]);
     RenderColor::colors[RenderCol_Model_Unprintable]= IMColor(GLVolume::UNPRINTABLE_COLOR);
@@ -538,7 +538,7 @@ std::array<float, 4> color_from_model_volume(const ModelVolume& model_volume)
 {
     std::array<float, 4> color = {0.0f, 0.0f, 0.0f, 1.0f};
     if (model_volume.is_negative_volume()) {
-        return GLVolume::MODEL_NEGTIVE_COL;
+        return GLVolume::MODEL_Negative_COL;
     }
     else if (model_volume.is_modifier()) {
 #if ENABLE_MODIFIERS_ALWAYS_TRANSPARENT

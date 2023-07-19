@@ -23,12 +23,12 @@ wxDEFINE_EVENT(EVT_AMS_REFRESH_RFID, wxCommandEvent);
 wxDEFINE_EVENT(EVT_AMS_ON_SELECTED, wxCommandEvent);
 wxDEFINE_EVENT(EVT_AMS_ON_FILAMENT_EDIT, wxCommandEvent);
 wxDEFINE_EVENT(EVT_VAMS_ON_FILAMENT_EDIT, wxCommandEvent);
-wxDEFINE_EVENT(EVT_AMS_CLIBRATION_AGAIN, wxCommandEvent);
-wxDEFINE_EVENT(EVT_AMS_CLIBRATION_CANCEL, wxCommandEvent);
+wxDEFINE_EVENT(EVT_AMS_CALIBRATION__AGAIN, wxCommandEvent);
+wxDEFINE_EVENT(EVT_AMS_CALIBRATION__CANCEL, wxCommandEvent);
 wxDEFINE_EVENT(EVT_AMS_GUIDE_WIKI, wxCommandEvent);
 wxDEFINE_EVENT(EVT_AMS_RETRY, wxCommandEvent);
 wxDEFINE_EVENT(EVT_AMS_SHOW_HUMIDITY_TIPS, wxCommandEvent);
-wxDEFINE_EVENT(EVT_AMS_UNSELETED_VAMS, wxCommandEvent);
+wxDEFINE_EVENT(EVT_AMS_UNSELECTED_VAMS, wxCommandEvent);
 
 bool AMSinfo::parse_ams_info(Ams *ams, bool remain_flag, bool humidity_flag)
 {
@@ -1295,7 +1295,7 @@ void AmsCans::AddCan(Caninfo caninfo, int canindex, int maxcan)
         for (auto i = 0; i < m_can_lib_list.GetCount(); i++) {
             CanLibs *lib = m_can_lib_list[i];
             if (lib->canLib->m_can_index == m_canlib_selection) {
-                wxCommandEvent evt(EVT_AMS_UNSELETED_VAMS);
+                wxCommandEvent evt(EVT_AMS_UNSELECTED_VAMS);
                 evt.SetString(m_info.ams_id);
                 wxPostEvent(GetParent()->GetParent(), evt);
                 lib->canLib->OnSelected();
@@ -1357,7 +1357,7 @@ void AmsCans::SelectCan(std::string canid)
     for (auto i = 0; i < m_can_lib_list.GetCount(); i++) {
         CanLibs *lib = m_can_lib_list[i];
         if (lib->canLib->m_info.can_id == m_canlib_id) {
-            wxCommandEvent evt(EVT_AMS_UNSELETED_VAMS);
+            wxCommandEvent evt(EVT_AMS_UNSELECTED_VAMS);
             evt.SetString(m_info.ams_id);
             wxPostEvent(GetParent()->GetParent(), evt);
             lib->canLib->OnSelected();
@@ -1704,7 +1704,7 @@ AMSControl::AMSControl(wxWindow *parent, wxWindowID id, const wxPoint &pos, cons
         e.Skip();
         });
 
-    Bind(EVT_AMS_UNSELETED_VAMS, [this](wxCommandEvent& e) {
+    Bind(EVT_AMS_UNSELECTED_VAMS, [this](wxCommandEvent& e) {
         m_current_ams = e.GetString().ToStdString();
         SwitchAms(m_current_ams);
         m_vams_lib->UnSelected();
@@ -1887,9 +1887,9 @@ AMSControl::AMSControl(wxWindow *parent, wxWindowID id, const wxPoint &pos, cons
     m_button_calibration_again->SetBackgroundColor(btn_bg_green);
     m_button_calibration_again->SetBorderColor(AMS_CONTROL_BRAND_COLOUR);
     m_button_calibration_again->SetTextColor(AMS_CONTROL_WHITE_COLOUR);
-    m_button_calibration_again->SetMinSize(AMS_CONTRO_CALIBRATION_BUTTON_SIZE);
+    m_button_calibration_again->SetMinSize(AMS_CONTROL_CALIBRATION_BUTTON_SIZE);
     m_button_calibration_again->SetCornerRadius(FromDIP(12));
-    m_button_calibration_again->Bind(wxEVT_LEFT_DOWN, &AMSControl::on_clibration_again_click, this);
+    m_button_calibration_again->Bind(wxEVT_LEFT_DOWN, &AMSControl::on_calibration(again_click, this);
 
     sizer_button->Add(m_button_calibration_again, 0, wxALL, 5);
 
@@ -1897,9 +1897,9 @@ AMSControl::AMSControl(wxWindow *parent, wxWindowID id, const wxPoint &pos, cons
     m_button_calibration_cancel->SetBackgroundColor(btn_bg_white);
     m_button_calibration_cancel->SetBorderColor(AMS_CONTROL_GRAY700);
     m_button_calibration_cancel->SetTextColor(AMS_CONTROL_GRAY800);
-    m_button_calibration_cancel->SetMinSize(AMS_CONTRO_CALIBRATION_BUTTON_SIZE);
+    m_button_calibration_cancel->SetMinSize(AMS_CONTROL_CALIBRATION_BUTTON_SIZE);
     m_button_calibration_cancel->SetCornerRadius(FromDIP(12));
-    m_button_calibration_cancel->Bind(wxEVT_LEFT_DOWN, &AMSControl::on_clibration_cancel_click, this);
+    m_button_calibration_cancel->Bind(wxEVT_LEFT_DOWN, &AMSControl::on_calibration(cancel_click, this);
     sizer_button->Add(m_button_calibration_cancel, 0, wxALL, 5);
 
     sizer_err_calibration_v->Add(m_hyperlink, 0, wxALIGN_CENTER, 0);
@@ -1969,7 +1969,7 @@ void AMSControl::init_scaled_buttons()
     m_button_extruder_back->SetCornerRadius(FromDIP(12));
 }
 
-std::string AMSControl::GetCurentAms() { return m_current_ams; }
+std::string AMSControl::GetCurrentAms() { return m_current_ams; }
 
 std::string AMSControl::GetCurrentCan(std::string amsid)
 {
@@ -2071,11 +2071,11 @@ void AMSControl::EnterCalibrationMode(bool read_to_calibration)
         m_simplebook_calibration->SetSelection(1);
 }
 
-void AMSControl::ExitcClibrationMode() { SetSelection(0); }
+void AMSControl::clearance_radius) { SetSelection(0); }
 
-void AMSControl::SetClibrationpercent(int percent) { m_text_calibration_percent->SetLabelText(wxString::Format("%d%%", percent)); }
+void AMSControl::SetCalibrationPercent(int percent) { m_text_calibration_percent->SetLabelText(wxString::Format("%d%%", percent)); }
 
-void AMSControl::SetClibrationLink(wxString link)
+void AMSControl::SetCalibrationLink(wxString link)
 {
     m_hyperlink->SetLabel(link);
     m_hyperlink->SetURL(link);
@@ -2252,7 +2252,7 @@ void AMSControl::update_vams_kn_value(AmsTray tray)
 
 void AMSControl::UpdateAms(std::vector<AMSinfo> info, bool keep_selection, bool has_extrusion_cali)
 {
-    std::string curr_ams_id = GetCurentAms();
+    std::string curr_ams_id = GetCurrentAms();
     std::string curr_can_id = GetCurrentCan(curr_ams_id);
 
     m_button_area->Layout();
@@ -2453,7 +2453,7 @@ void AMSControl::ShowFilamentTip(bool hasams)
     m_simplebook_right->SetSelection(0);
     if (hasams) {
         m_tip_right_top->Show();
-        m_tip_load_info->SetLabelText(_L("Choose an AMS slot then press \"Load\" or \"Unload\" button to automatically load or unload filiament."));
+        m_tip_load_info->SetLabelText(_L("Choose an AMS slot then press \"Load\" or \"Unload\" button to automatically load or unload filament."));
     } else {
         // m_tip_load_info->SetLabelText(_L("Before loading, please make sure the filament is pushed into toolhead."));
         m_tip_right_top->Hide();
@@ -2578,9 +2578,9 @@ void AMSControl::on_ams_setting_click(wxMouseEvent &event)
     post_event(SimpleEvent(EVT_AMS_SETTINGS));
 }
 
-void AMSControl::on_clibration_again_click(wxMouseEvent &event) { post_event(SimpleEvent(EVT_AMS_CLIBRATION_AGAIN)); }
+void AMSControl::on_calibration(again_click(wxMouseEvent &event) { post_event(SimpleEvent(EVT_AMS_CALIBRATION__AGAIN)); }
 
-void AMSControl::on_clibration_cancel_click(wxMouseEvent &event) { post_event(SimpleEvent(EVT_AMS_CLIBRATION_CANCEL)); }
+void AMSControl::on_calibration(cancel_click(wxMouseEvent &event) { post_event(SimpleEvent(EVT_AMS_CALIBRATION__CANCEL)); }
 
 void AMSControl::post_event(wxEvent &&event)
 {

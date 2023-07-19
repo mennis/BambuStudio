@@ -53,7 +53,7 @@ void ArcFitter::do_arc_fitting(const Points& points, std::vector<PathFittingData
                                              tolerance,
                                              DEFAULT_ARC_LENGTH_PERCENT_TOLERANCE);
         if (can_fit) {
-            //BBS: can be fit as arc, then save arc data temperarily
+            //BBS: can be fit as arc, then save arc data temporarily
             last_arc = target_arc;
             if (back_index == points.size() - 1) {
                 result.emplace_back(std::move(PathFittingData{ front_index,
@@ -64,7 +64,7 @@ void ArcFitter::do_arc_fitting(const Points& points, std::vector<PathFittingData
             }
         } else {
             if (back_index - front_index > 2) {
-                //BBS: althought current point_stack can't be fit as arc,
+                //BBS: although current point_stack can't be fit as arc,
                 //but previous must can be fit if removing the top in stack, so save last arc
                 result.emplace_back(std::move(PathFittingData{ front_index,
                                    back_index - 1,
@@ -109,7 +109,7 @@ void ArcFitter::do_arc_fitting_and_simplify(Points& points, std::vector<PathFitt
         result[0].end_point_index = points.size() - 1;
         return;
     } else {
-        //BBS: has both arc part and straight part, we should spilit the straight part out and do DP simplify
+        //BBS: has both arc part and straight part, we should split the straight part out and do DP simplify
         Points simplified_points;
         simplified_points.reserve(points.size());
         simplified_points.push_back(points[0]);
@@ -118,7 +118,7 @@ void ArcFitter::do_arc_fitting_and_simplify(Points& points, std::vector<PathFitt
         {
             size_t start_index = result[i].start_point_index;
             size_t end_index = result[i].end_point_index;
-            //BBS: get the straight and arc part, and do simplifing independently.
+            //BBS: get the straight and arc part, and do simplifying independently.
             //Why: It's obvious that we need to use DP to simplify straight part to reduce point.
             //For arc part, theoretically, we only need to keep the start and end point, and
             //delete all other point. But when considering wipe operation, we must keep the original

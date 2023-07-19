@@ -21,7 +21,7 @@ const char* GetRenderColName(RenderCol idx)
     case RenderCol_Model_Neutral: return "Model Neutral";
     case RenderCol_Part: return "Part";
     case RenderCol_Modifier: return "Modifier";
-    case RenderCol_Negtive_Volume: return "Negtive Volume";
+    case RenderCol_Negative_Volume: return "Negative Volume";
     case RenderCol_Support_Enforcer: return "Support Enforcer";
     case RenderCol_Support_Blocker: return "Support Blocker";
     case RenderCol_Axis_X: return "Axis X";

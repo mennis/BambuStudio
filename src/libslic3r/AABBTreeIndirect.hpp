@@ -23,7 +23,7 @@ namespace AABBTreeIndirect {
 
 // Static balanced AABB tree for raycasting and closest triangle search.
 // The balanced tree is built over a single large std::vector of nodes, where the children of nodes
-// are addressed implicitely using a power of two indexing rule.
+// are addressed implicitly using a power of two indexing rule.
 // Memory for a full balanced tree is allocated, but not all nodes at the last level are used.
 // This may seem like a waste of memory, but one saves memory for the node links and there is zero
 // overhead of a memory allocator management (usually the memory allocator adds at least one pointer 
@@ -51,7 +51,7 @@ public:
     };
 
     // Single node of the implicit balanced AABB tree. There are no links to the children nodes,
-    // as these links are calculated implicitely using a power of two rule.
+    // as these links are calculated implicitly using a power of two rule.
     struct Node {
     	// Index of the external source entity, for which this AABB tree was built, npos for internal nodes.
         size_t 			idx = npos;
@@ -819,7 +819,7 @@ void get_candidate_idxs(const TreeType& tree, const VectorType& v, std::vector<s
     return;
 }
 
-// Predicate: need to be specialized for intersections of different geomteries
+// Predicate: need to be specialized for intersections of different geometries
 template<class G> struct Intersecting {};
 
 // Intersection predicate specialization for box-box intersections

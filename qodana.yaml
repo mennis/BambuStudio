@@ -1,0 +1,10 @@
+version: "1.0"
+profile:
+  name: qodana.recommended
+
+include:
+  - name: CheckDependencyLicenses
+bootstrap: |+
+  set -eu
+
+linter: jetbrains/qodana-python:2022.3-eap

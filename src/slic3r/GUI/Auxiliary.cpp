@@ -1117,10 +1117,10 @@ void AuxiliaryPanel::update_all_cover()
      m_text_model_name->Wrap(-1);
      m_sizer_model_name->Add(m_text_model_name, 0, wxALIGN_CENTER, 0);
 
-     m_imput_model_name =  new ::TextInput(this, wxEmptyString, wxEmptyString, wxEmptyString, wxDefaultPosition,wxSize(FromDIP(450),FromDIP(30)), wxTE_PROCESS_ENTER);
-     m_imput_model_name->GetTextCtrl()->SetFont(::Label::Body_14);
-     m_imput_model_name->GetTextCtrl()->SetSize(wxSize(FromDIP(450), -1));
-     m_sizer_model_name->Add(m_imput_model_name, 0, wxALIGN_CENTER, 0);
+     m_input_model_name =  new ::TextInput(this, wxEmptyString, wxEmptyString, wxEmptyString, wxDefaultPosition,wxSize(FromDIP(450),FromDIP(30)), wxTE_PROCESS_ENTER);
+     m_input_model_name->GetTextCtrl()->SetFont(::Label::Body_14);
+     m_input_model_name->GetTextCtrl()->SetSize(wxSize(FromDIP(450), -1));
+     m_sizer_model_name->Add(m_input_model_name, 0, wxALIGN_CENTER, 0);
 
      /*
      wxBoxSizer *m_sizer_license = new wxBoxSizer(wxHORIZONTAL);
@@ -1144,7 +1144,7 @@ void AuxiliaryPanel::update_all_cover()
      Fit();
 
      m_input_designer->Bind(wxEVT_TEXT, &DesignerPanel::on_input_enter_designer, this);
-     m_imput_model_name->Bind(wxEVT_TEXT, &DesignerPanel::on_input_enter_model, this);
+     m_input_model_name->Bind(wxEVT_TEXT, &DesignerPanel::on_input_enter_model, this);
      //m_combo_license->Connect(wxEVT_COMMAND_COMBOBOX_SELECTED, wxCommandEventHandler(DesignerPanel::on_select_license), NULL, this);
 }
 
@@ -1186,7 +1186,7 @@ bool DesignerPanel::Show(bool show)
 
      if (wxGetApp().plater()->model().model_info != nullptr) { 
          wxString text = wxString::FromUTF8(wxGetApp().plater()->model().model_info->model_name);
-         m_imput_model_name->GetTextCtrl()->SetValue(text);
+         m_input_model_name->GetTextCtrl()->SetValue(text);
      }
     
     return wxPanel::Show(show);
@@ -1217,16 +1217,16 @@ void DesignerPanel::update_info()
 
     if (wxGetApp().plater()->model().model_info != nullptr) {
         wxString text = wxString::FromUTF8(wxGetApp().plater()->model().model_info->model_name);
-        m_imput_model_name->GetTextCtrl()->SetValue(text);
+        m_input_model_name->GetTextCtrl()->SetValue(text);
     } else {
-         m_imput_model_name->GetTextCtrl()->SetValue(wxEmptyString);
+         m_input_model_name->GetTextCtrl()->SetValue(wxEmptyString);
     }
 }
 
 void DesignerPanel::msw_rescale()
 {
     m_input_designer->GetTextCtrl()->SetSize(wxSize(FromDIP(450), -1));
-    m_imput_model_name->GetTextCtrl()->SetSize(wxSize(FromDIP(450), -1));
+    m_input_model_name->GetTextCtrl()->SetSize(wxSize(FromDIP(450), -1));
 }
 
 }} // namespace Slic3r::GUI

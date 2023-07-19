@@ -34,7 +34,7 @@ namespace agg
 
     //=============================================================scanline_p8
     // 
-    // This is a general purpose scaline container which supports the interface 
+    // This is a general purpose scanline container which supports the interface
     // used in the rasterizer::render(). See description of scanline_u8
     // for details.
     // 

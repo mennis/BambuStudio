@@ -34,7 +34,7 @@ namespace agg
 
     //==============================================================bezier_arc
     // 
-    // See implemantaion agg_bezier_arc.cpp
+    // See implementation agg_bezier_arc.cpp
     //
     class bezier_arc
     {
@@ -71,7 +71,7 @@ namespace agg
             return (m_vertex == 2) ? unsigned(path_cmd_move_to) : m_cmd;
         }
 
-        // Supplemantary functions. num_vertices() actually returns doubled 
+        // Supplementary functions. num_vertices() actually returns doubled
         // number of vertices. That is, for 1 vertex it returns 2.
         //--------------------------------------------------------------------
         unsigned  num_vertices() const { return m_num_vertices; }
@@ -138,7 +138,7 @@ namespace agg
             return m_arc.vertex(x, y);
         }
 
-        // Supplemantary functions. num_vertices() actually returns doubled 
+        // Supplementary functions. num_vertices() actually returns doubled
         // number of vertices. That is, for 1 vertex it returns 2.
         //--------------------------------------------------------------------
         unsigned  num_vertices() const { return m_arc.num_vertices(); }

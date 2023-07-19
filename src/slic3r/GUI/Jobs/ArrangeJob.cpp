@@ -86,7 +86,7 @@ void ArrangeJob::clear_input()
         for (auto mi : obj->instances)
             mi->printable ? count++ : cunprint++;
 
-    params.nonprefered_regions.clear();
+    params.nonpreferred_regions.clear();
     m_selected.clear();
     m_unselected.clear();
     m_unprintable.clear();
@@ -226,7 +226,7 @@ void ArrangeJob::prepare_all() {
     if (m_selected.empty()) {
         if (!selected_is_locked) {
             m_plater->get_notification_manager()->push_notification(NotificationType::BBLPlateInfo,
-                NotificationManager::NotificationLevel::WarningNotificationLevel, into_u8(_L("No arrangable objects are selected.")));
+                NotificationManager::NotificationLevel::WarningNotificationLevel, into_u8(_L("No arrangeable objects are selected.")));
         }
         else {
             m_plater->get_notification_manager()->push_notification(NotificationType::BBLPlateInfo,
@@ -265,7 +265,7 @@ void ArrangeJob::prepare_wipe_tower()
         }
     }
      
-    // if multile extruders have same bed temp, we need wipe tower
+    // if multiple extruders have same bed temp, we need wipe tower
      if (params.allow_multi_materials_on_same_plate) {
         std::map<int, std::set<int>> bedTemp2extruderIds;
         for (const auto &item : m_selected)
@@ -389,7 +389,7 @@ void ArrangeJob::prepare()
 
         params.clearance_height_to_rod             = print.config().extruder_clearance_height_to_rod.value;
         params.clearance_height_to_lid             = print.config().extruder_clearance_height_to_lid.value;
-        params.cleareance_radius                   = print.config().extruder_clearance_max_radius.value;
+        params.clearance_radius                   = print.config().extruder_clearance_max_radius.value;
         params.printable_height                    = print.config().printable_height.value;
         params.allow_rotations                     = settings.enable_rotation;
         params.allow_multi_materials_on_same_plate = settings.allow_multi_materials_on_same_plate;
@@ -502,10 +502,10 @@ void ArrangeJob::process()
     auto& print = wxGetApp().plater()->get_partplate_list().get_current_fff_print();
 
     if (params.is_seq_print)
-        params.min_obj_distance = std::max(params.min_obj_distance, scaled(params.cleareance_radius));
+        params.min_obj_distance = std::max(params.min_obj_distance, scaled(params.clearance_radius));
 
     if (params.avoid_extrusion_cali_region && print.full_print_config().opt_bool("scan_first_layer"))
-        partplate_list.preprocess_nonprefered_areas(m_unselected, MAX_NUM_PLATES);
+        partplate_list.preprocess_nonpreferred_areas(m_unselected, MAX_NUM_PLATES);
         
     double skirt_distance = print.has_skirt() ? print.config().skirt_distance.value : 0;
     double brim_max = 0;
@@ -516,9 +516,9 @@ void ArrangeJob::process()
     params.brim_skirt_distance = skirt_distance + brim_max;
     params.bed_shrink_x = settings.bed_shrink_x + params.brim_skirt_distance;
     params.bed_shrink_y = settings.bed_shrink_y + params.brim_skirt_distance;
-    // for sequential print, we need to inflate the bed because cleareance_radius is so large
+    // for sequential print, we need to inflate the bed because clearance_radius is so large
     if (params.is_seq_print) {
-        float shift_dist = params.cleareance_radius / 2 - 5;
+        float shift_dist = params.clearance_radius / 2 - 5;
         params.bed_shrink_x -= shift_dist;
         params.bed_shrink_y -= shift_dist;
         // dont forget to move the excluded region
@@ -547,7 +547,7 @@ void ArrangeJob::process()
             ap.inflation  = std::min(min_diff / 2, ap.inflation);
         }
     });
-    // For occulusion regions, inflation should be larger to prevent genrating brim on them.
+    // For occlusion regions, inflation should be larger to prevent generating brim on them.
     // However, extrusion cali regions are exceptional, since we can allow brim overlaps them.
     // 屏蔽区域只需要膨胀brim宽度，防止brim长过去；挤出标定区域不需要膨胀，brim可以长过去。
     // 以前我们认为还需要膨胀clearance_radius/2，这其实是不需要的，因为这些区域并不会真的摆放物体，
@@ -710,7 +710,7 @@ void ArrangeJob::finalize() {
     }
 
     // Move the unprintable items to the last virtual bed.
-    // Note ap.apply() moves relatively according to bed_idx, so we need to subtract the orignal bed_idx
+    // Note ap.apply() moves relatively according to bed_idx, so we need to subtract the original bed_idx
     for (ArrangePolygon& ap : m_unprintable) {
         ap.bed_idx = beds + 1;
         plate_list.postprocess_arrange_polygon(ap, true);

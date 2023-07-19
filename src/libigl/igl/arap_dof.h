@@ -69,7 +69,7 @@ namespace igl
   //   M  #V * dim by #handles * dim * (dim+1) matrix such that
   //     new_V(:) = LBS(V,W,A) = reshape(M * A,size(V)), where A is a column
   //     vectors formed by the entries in each handle's dim by dim+1 
-  //     transformation matrix. Specifcally, A =
+  //     transformation matrix. Specifically, A =
   //       reshape(permute(Astack,[3 1 2]),n*dim*(dim+1),1)
   //     or A = [Lxx;Lyx;Lxy;Lyy;tx;ty], and likewise for other dim
   //     if Astack(:,:,i) is the dim by (dim+1) transformation at handle i
@@ -96,7 +96,7 @@ namespace igl
   // given that there are only changes in free and fixed
   //
   // Inputs:
-  //   fixed_dim  list of transformation element indices for fixed (or partailly
+  //   fixed_dim  list of transformation element indices for fixed (or partially
   //   fixed) handles: not necessarily the complement of 'free'
   //    NOTE: the constraints for fixed transformations still need to be
   //    present in A_eq

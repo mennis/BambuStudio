@@ -7,7 +7,7 @@
 #include "Button.hpp"
 #include "../DeviceManager.hpp"
 #include "slic3r/GUI/Event.hpp"
-#include "slic3r/GUI/AmsMappingPopup.hpp"
+#include "slic3r/GUI/AMSMappingPopup.hpp"
 #include <wx/simplebook.h>
 #include <wx/hyperlink.h>
 #include <wx/animate.h>
@@ -25,7 +25,7 @@
 #define AMS_CONTROL_DEF_LIB_BK_COLOUR wxColour(248, 248, 248)
 #define AMS_EXTRUDER_DEF_COLOUR wxColour(234, 234, 234)
 #define AMS_CONTROL_MAX_COUNT 4
-#define AMS_CONTRO_CALIBRATION_BUTTON_SIZE wxSize(FromDIP(150), FromDIP(28))
+#define AMS_CONTROL_CALIBRATION_BUTTON_SIZE wxSize(FromDIP(150), FromDIP(28))
 
 // enum AMSRoadMode{
 //    AMS_ROAD_MODE_LEFT,
@@ -145,7 +145,7 @@ public:
     std::string             current_can_id;
     AMSPassRoadSTEP         current_step;
     AMSAction               current_action;
-    int                     curreent_filamentstep;
+    int                     current_filament_step;
     int                     ams_humidity = 0;
 
     bool parse_ams_info(Ams *ams, bool remain_flag = false, bool humidity_flag = false);
@@ -526,7 +526,7 @@ protected:
     wxHyperlinkCtrl *m_hyperlink = {nullptr};
     AmsHumidityTipPopup m_Humidity_tip_popup;
 public:
-    std::string GetCurentAms();
+    std::string GetCurrentAms();
     std::string GetCurrentCan(std::string amsid);
 	wxColour GetCanColour(std::string amsid, std::string canid);
 
@@ -536,10 +536,10 @@ public:
     void ExitNoneAMSMode();
 
     void EnterCalibrationMode(bool read_to_calibration);
-    void ExitcClibrationMode();
+    void clearance_radius);
 
-    void SetClibrationpercent(int percent);
-    void SetClibrationLink(wxString link);
+    void SetCalibrationPercent(int percent);
+    void SetCalibrationLink(wxString link);
 
     void PlayRridLoading(wxString amsid, wxString canid);
     void StopRridLoading(wxString amsid, wxString canid);
@@ -562,8 +562,8 @@ public:
     void on_ams_setting_click(wxMouseEvent &event);
     void on_extrusion_cali(wxCommandEvent &event);
     void on_ams_setting_click(wxCommandEvent &event);
-    void on_clibration_again_click(wxMouseEvent &event);
-    void on_clibration_cancel_click(wxMouseEvent &event);
+    void on_calibration(again_click(wxMouseEvent &event);
+    void on_calibration(cancel_click(wxMouseEvent &event);
     void Reset();
 
     void show_noams_mode(bool show, bool support_virtual_tray, bool support_vt_load = false);
@@ -587,12 +587,12 @@ wxDECLARE_EVENT(EVT_AMS_REFRESH_RFID, wxCommandEvent);
 wxDECLARE_EVENT(EVT_AMS_ON_SELECTED, wxCommandEvent);
 wxDECLARE_EVENT(EVT_AMS_ON_FILAMENT_EDIT, wxCommandEvent);
 wxDECLARE_EVENT(EVT_VAMS_ON_FILAMENT_EDIT, wxCommandEvent);
-wxDECLARE_EVENT(EVT_AMS_CLIBRATION_AGAIN, wxCommandEvent);
-wxDECLARE_EVENT(EVT_AMS_CLIBRATION_CANCEL, wxCommandEvent);
+wxDECLARE_EVENT(EVT_AMS_CALIBRATION__AGAIN, wxCommandEvent);
+wxDECLARE_EVENT(EVT_AMS_CALIBRATION__CANCEL, wxCommandEvent);
 wxDECLARE_EVENT(EVT_AMS_GUIDE_WIKI, wxCommandEvent);
 wxDECLARE_EVENT(EVT_AMS_RETRY, wxCommandEvent);
 wxDECLARE_EVENT(EVT_AMS_SHOW_HUMIDITY_TIPS, wxCommandEvent);
-wxDECLARE_EVENT(EVT_AMS_UNSELETED_VAMS, wxCommandEvent);
+wxDECLARE_EVENT(EVT_AMS_UNSELECTED_VAMS, wxCommandEvent);
 
 }} // namespace Slic3r::GUI
 

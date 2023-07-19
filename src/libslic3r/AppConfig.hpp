@@ -32,7 +32,7 @@ public:
 		GCodeViewer
 	};
 
-    //BBS: remove GCodeViewer as seperate APP logic
+    //BBS: remove GCodeViewer as separate APP logic
 	explicit AppConfig() :
 		m_dirty(false),
 		m_orig_version(Semver::invalid()),
@@ -51,7 +51,7 @@ public:
 	void 			   	set_defaults();
 
 	// Load the slic3r.ini from a user profile directory (or a datadir, if configured).
-	// return error string or empty strinf
+	// return error string or empty string
 	std::string         load();
 	// Store the slic3r.ini into a user profile directory (or a datadir, if configured).
 	void 			   	save();

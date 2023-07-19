@@ -588,7 +588,7 @@ IGL_INLINE typename igl::AABB<DerivedV,DIM>::Scalar
   }
 
   //// Exact minimum squared distance between arbitrary primitives inside this and
-  //// othre's bounding boxes
+  //// other's bounding boxes
   //const auto & min_squared_distance = [&](
   //  const AABB<DerivedV,DIM> * A,
   //  const AABB<Derivedother_V,DIM> * B)->Scalar
@@ -976,7 +976,7 @@ igl::AABB<DerivedV,DIM>::intersect_ray(
   }
 
   // Doesn't seem like smartly choosing left before/after right makes a
-  // differnce
+  // difference
   igl::Hit left_hit;
   igl::Hit right_hit;
   bool left_ret = m_left->intersect_ray(V,Ele,origin,dir,min_t,left_hit);

@@ -230,7 +230,7 @@ IGL_INLINE bool igl::arap_dof_precomputation(
 //    endl<<"K=sparse(KIJV(:,1),KIJV(:,2),KIJV(:,3),"<<
 //    K.rows()<<","<<K.cols()<<");"<<endl;
 //#endif
-  // Precompute left muliplication by M and right multiplication by G_sum
+  // Precompute left multiplication by M and right multiplication by G_sum
   SparseMatrix<double> G_sumT = G_sum.transpose();
   SparseMatrix<double> G_sumT_dim_dim;
   repdiag(G_sumT,data.dim*data.dim,G_sumT_dim_dim);

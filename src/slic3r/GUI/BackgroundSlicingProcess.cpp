@@ -59,7 +59,7 @@ bool SlicingProcessCompletedEvent::invalidate_plater() const
 			this->rethrow_exception();
 		}
 		catch (const Slic3r::ExportError&) {
-			// Exception thrown by copying file does not ivalidate plater
+			// Exception thrown by copying file does not invalidate plater
 			return false;
 		}
 		catch (...) {
@@ -213,7 +213,7 @@ void BackgroundSlicingProcess::process_fff()
 		BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << boost::format(" %1%: will start slicing, reset gcode_result %2% firstly")%__LINE__%m_gcode_result;
 		m_gcode_result->reset();
 
-		BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << boost::format(" %1%: gcode_result reseted, will start print::process")%__LINE__;
+		BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << boost::format(" %1%: gcode_result reset, will start print::process")%__LINE__;
 		m_print->process();
 		BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << boost::format(" %1%: after print::process, send slicing complete event to gui...")%__LINE__;
 
@@ -340,17 +340,17 @@ void BackgroundSlicingProcess::thread_proc()
 }
 
 #ifdef _WIN32
-// Only these SEH exceptions will be catched and turned into Slic3r::HardCrash C++ exceptions.
-static bool is_win32_seh_harware_exception(unsigned long ex) throw() {
+// Only these SEH exceptions will be caught and turned into Slic3r::HardCrash C++ exceptions.
+static bool is_win32_seh_hardware_exception(unsigned long ex) throw() {
 	return
 		ex == STATUS_ACCESS_VIOLATION ||
 		ex == STATUS_DATATYPE_MISALIGNMENT ||
 		ex == STATUS_FLOAT_DIVIDE_BY_ZERO ||
 		ex == STATUS_FLOAT_OVERFLOW ||
 		ex == STATUS_FLOAT_UNDERFLOW ||
-#ifdef STATUS_FLOATING_RESEVERED_OPERAND
-		ex == STATUS_FLOATING_RESEVERED_OPERAND ||
-#endif // STATUS_FLOATING_RESEVERED_OPERAND
+#ifdef STATUS_FLOATING_RESERVED_OPERAND
+		ex == STATUS_FLOATING_RESERVED_OPERAND ||
+#endif // STATUS_FLOATING_RESERVED_OPERAND
 		ex == STATUS_ILLEGAL_INSTRUCTION ||
 		ex == STATUS_PRIVILEGED_INSTRUCTION ||
 		ex == STATUS_INTEGER_DIVIDE_BY_ZERO ||
@@ -359,25 +359,25 @@ static bool is_win32_seh_harware_exception(unsigned long ex) throw() {
 }
 
 // Rethrow some SEH exceptions as Slic3r::HardCrash C++ exceptions.
-static void rethrow_seh_exception(unsigned long win32_seh_catched)
+static void rethrow_seh_exception(unsigned long win32_seh_caught)
 {
-	if (win32_seh_catched) {
+	if (win32_seh_caught) {
 		// Rethrow SEH exception as Slicer::HardCrash.
-		if (win32_seh_catched == STATUS_ACCESS_VIOLATION || win32_seh_catched == STATUS_DATATYPE_MISALIGNMENT)
+		if (win32_seh_caught == STATUS_ACCESS_VIOLATION || win32_seh_caught == STATUS_DATATYPE_MISALIGNMENT)
 			throw Slic3r::HardCrash(_u8L("Access violation"));
-		if (win32_seh_catched == STATUS_ILLEGAL_INSTRUCTION || win32_seh_catched == STATUS_PRIVILEGED_INSTRUCTION)
+		if (win32_seh_caught == STATUS_ILLEGAL_INSTRUCTION || win32_seh_caught == STATUS_PRIVILEGED_INSTRUCTION)
 			throw Slic3r::HardCrash(_u8L("Illegal instruction"));
-		if (win32_seh_catched == STATUS_FLOAT_DIVIDE_BY_ZERO || win32_seh_catched == STATUS_INTEGER_DIVIDE_BY_ZERO)
+		if (win32_seh_caught == STATUS_FLOAT_DIVIDE_BY_ZERO || win32_seh_caught == STATUS_INTEGER_DIVIDE_BY_ZERO)
 			throw Slic3r::HardCrash(_u8L("Divide by zero"));
-		if (win32_seh_catched == STATUS_FLOAT_OVERFLOW || win32_seh_catched == STATUS_INTEGER_OVERFLOW)
+		if (win32_seh_caught == STATUS_FLOAT_OVERFLOW || win32_seh_caught == STATUS_INTEGER_OVERFLOW)
 			throw Slic3r::HardCrash(_u8L("Overflow"));
-		if (win32_seh_catched == STATUS_FLOAT_UNDERFLOW)
+		if (win32_seh_caught == STATUS_FLOAT_UNDERFLOW)
 			throw Slic3r::HardCrash(_u8L("Underflow"));
-#ifdef STATUS_FLOATING_RESEVERED_OPERAND
-		if (win32_seh_catched == STATUS_FLOATING_RESEVERED_OPERAND)
+#ifdef STATUS_FLOATING_RESERVED_OPERAND
+		if (win32_seh_caught == STATUS_FLOATING_RESERVED_OPERAND)
 			throw Slic3r::HardCrash(_u8L("Floating reserved operand"));
-#endif // STATUS_FLOATING_RESEVERED_OPERAND
-		if (win32_seh_catched == STATUS_STACK_OVERFLOW)
+#endif // STATUS_FLOATING_RESERVED_OPERAND
+		if (win32_seh_caught == STATUS_STACK_OVERFLOW)
 			throw Slic3r::HardCrash(_u8L("Stack overflow"));
 	}
 }
@@ -385,21 +385,21 @@ static void rethrow_seh_exception(unsigned long win32_seh_catched)
 // Wrapper for Win32 structured exceptions. Win32 structured exception blocks and C++ exception blocks cannot be mixed in the same function.
 unsigned long BackgroundSlicingProcess::call_process_seh(std::exception_ptr &ex) throw()
 {
-	unsigned long win32_seh_catched = 0;
+	unsigned long win32_seh_caught = 0;
 	__try {
 		this->call_process(ex);
-	} __except (is_win32_seh_harware_exception(GetExceptionCode())) {
-		win32_seh_catched = GetExceptionCode();
+	} __except (is_win32_seh_hardware_exception(GetExceptionCode())) {
+		win32_seh_caught = GetExceptionCode();
 	}
-	return win32_seh_catched;
+	return win32_seh_caught;
 }
 void BackgroundSlicingProcess::call_process_seh_throw(std::exception_ptr &ex) throw()
 {
-	unsigned long win32_seh_catched = this->call_process_seh(ex);
-	if (win32_seh_catched) {
+	unsigned long win32_seh_caught = this->call_process_seh(ex);
+	if (win32_seh_caught) {
 		// Rethrow SEH exception as Slicer::HardCrash.
 		try {
-			rethrow_seh_exception(win32_seh_catched);
+			rethrow_seh_exception(win32_seh_caught);
 		} catch (...) {
 			ex = std::current_exception();
 		}
@@ -430,21 +430,21 @@ void BackgroundSlicingProcess::call_process(std::exception_ptr &ex) throw()
 #ifdef _WIN32
 unsigned long BackgroundSlicingProcess::thread_proc_safe_seh() throw()
 {
-	unsigned long win32_seh_catched = 0;
+	unsigned long win32_seh_caught = 0;
 	__try {
 		this->thread_proc_safe();
-	} __except (is_win32_seh_harware_exception(GetExceptionCode())) {
-		win32_seh_catched = GetExceptionCode();
+	} __except (is_win32_seh_hardware_exception(GetExceptionCode())) {
+		win32_seh_caught = GetExceptionCode();
 	}
-	return win32_seh_catched;
+	return win32_seh_caught;
 }
 void BackgroundSlicingProcess::thread_proc_safe_seh_throw() throw()
 {
-	unsigned long win32_seh_catched = this->thread_proc_safe_seh();
-	if (win32_seh_catched) {
+	unsigned long win32_seh_caught = this->thread_proc_safe_seh();
+	if (win32_seh_caught) {
 		// Rethrow SEH exception as Slicer::HardCrash.
 		try {
-			rethrow_seh_exception(win32_seh_catched);
+			rethrow_seh_exception(win32_seh_caught);
 		} catch (...) {
 			wxTheApp->OnUnhandledException();
 		}
@@ -647,10 +647,10 @@ bool BackgroundSlicingProcess::empty() const
 	return m_print->empty();
 }
 
-StringObjectException BackgroundSlicingProcess::validate(StringObjectException *warning, Polygons* collison_polygons, std::vector<std::pair<Polygon, float>>* height_polygons)
+StringObjectException BackgroundSlicingProcess::validate(StringObjectException *warning, Polygons* _collision_polygons, std::vector<std::pair<Polygon, float>>* height_polygons)
 {
 	assert(m_print != nullptr);
-    return m_print->validate(warning, collison_polygons, height_polygons);
+    return m_print->validate(warning, _collision_polygons, height_polygons);
 }
 
 // Apply config over the print. Returns false, if the new config values caused any of the already
@@ -668,7 +668,7 @@ Print::ApplyStatus BackgroundSlicingProcess::apply(const Model &model, const Dyn
 		// Some FFF status was invalidated, and the G-code was not exported yet.
 		// Let the G-code preview UI know that the final G-code preview is not valid.
 		// In addition, this early memory deallocation reduces memory footprint.
-		BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << boost::format(": invalide gcode result %1%, will reset soon")%m_gcode_result;
+		BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << boost::format(": invalid gcode result %1%, will reset soon")%m_gcode_result;
 		if (m_gcode_result != nullptr)
 			m_gcode_result->reset();
 	}

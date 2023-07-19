@@ -213,8 +213,8 @@ set(SLIC3R_GUI_SOURCES
     GUI/ParamsPanel.hpp
     GUI/PrintHostDialogs.cpp
     GUI/PrintHostDialogs.hpp
-    GUI/AmsWidgets.cpp
-    GUI/AmsWidgets.hpp
+    GUI/AMSWidgets.cpp
+    GUI/AMSWidgets.hpp
     GUI/MediaFilePanel.cpp
     GUI/MediaFilePanel.h
     GUI/MediaPlayCtrl.cpp
@@ -376,8 +376,8 @@ set(SLIC3R_GUI_SOURCES
     GUI/SelectMachine.cpp
     GUI/SendToPrinter.hpp
     GUI/SendToPrinter.cpp
-    GUI/AmsMappingPopup.hpp
-    GUI/AmsMappingPopup.cpp
+    GUI/AMSMappingPopup.hpp
+    GUI/AMSMappingPopup.cpp
     GUI/ReleaseNote.hpp
     GUI/ReleaseNote.cpp
     GUI/Calibration.hpp

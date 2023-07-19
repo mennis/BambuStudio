@@ -10,7 +10,7 @@ Goals of robust tesselation
 
 The tesselation algorithm is fundamentally a 2D algorithm.  We
 initially project all data into a plane; our goal is to robustly
-tesselate the projected data.  The same topological tesselation is
+tessellate the projected data.  The same topological tesselation is
 then applied to the input data.
 
 Topologically, the output should always be a tesselation.  If the

@@ -334,7 +334,7 @@ msgstr ""
 msgid "%1%"
 msgstr ""
 
-msgid "Can't apply when proccess preview."
+msgid "Can't apply when process preview."
 msgstr ""
 
 msgid "Cancel"
@@ -367,7 +367,7 @@ msgstr ""
 msgid "Remove selection"
 msgstr ""
 
-msgid "Shift + Mouse move up or dowm"
+msgid "Shift + Mouse move up or down"
 msgstr ""
 
 msgid "Rotate text"
@@ -385,7 +385,7 @@ msgstr ""
 msgid "Input text"
 msgstr ""
 
-msgid "Embeded"
+msgid "Embedded"
 msgstr ""
 
 msgid "Text Gap"
@@ -481,8 +481,8 @@ msgid "Connect %s failed! [SN:%s, code=%s]"
 msgstr ""
 
 msgid ""
-"BambuStudio configuration file may be corrupted and is not abled to be "
-"parsed.Please delete the file and try again."
+"BambuStudio configuration file may be corrupted and is not able to be "
+"parsed. Please delete the file and try again."
 msgstr ""
 
 #, possible-c-format, possible-boost-format
@@ -532,7 +532,7 @@ msgid "Some presets are modified."
 msgstr ""
 
 msgid ""
-"You can keep the modifield presets to the new project, discard or save "
+"You can keep the modified presets to the new project, discard or save "
 "changes as new presets."
 msgstr ""
 
@@ -608,7 +608,7 @@ msgid "Bambu Studio GUI initialization failed"
 msgstr ""
 
 #, possible-boost-format
-msgid "Fatal error, exception catched: %1%"
+msgid "Fatal error, exception caught: %1%"
 msgstr ""
 
 msgid "Quality"
@@ -659,7 +659,7 @@ msgstr ""
 msgid "Wipe options"
 msgstr ""
 
-msgid "Bed adhension"
+msgid "Bed adhesion"
 msgstr ""
 
 msgid "Advanced"
@@ -855,7 +855,7 @@ msgstr ""
 msgid "Auto orient the object to improve print quality."
 msgstr ""
 
-msgid "Split the selected object into mutiple objects"
+msgid "Split the selected object into multiple objects"
 msgstr ""
 
 msgid "Split the selected object into mutiple parts"
@@ -995,7 +995,7 @@ msgstr ""
 msgid "Deleting the last solid part is not allowed."
 msgstr ""
 
-msgid "The target object contains only one part and can not be splited."
+msgid "The target object contains only one part and can not be split."
 msgstr ""
 
 msgid "Assembly"
@@ -1057,8 +1057,8 @@ msgid_plural "Following model objects have been repaired"
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "Failed to repair folowing model object"
-msgid_plural "Failed to repair folowing model objects"
+msgid "Failed to repair following model object"
+msgid_plural "Failed to repair following model objects"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -1218,7 +1218,7 @@ msgstr ""
 msgid "Calibrating AMS..."
 msgstr ""
 
-msgid "A problem occured during calibration. Click to view the solution."
+msgid "A problem occurred during calibration. Click to view the solution."
 msgstr ""
 
 msgid "Calibrate again"
@@ -1250,7 +1250,7 @@ msgstr ""
 
 msgid ""
 "Choose an AMS slot then press \"Load\" or \"Unload\" button to automatically "
-"load or unload filiament."
+"load or unload filament."
 msgstr ""
 
 msgid "Edit"
@@ -1261,7 +1261,7 @@ msgid ""
 "We can not do auto-arrange on these objects."
 msgstr ""
 
-msgid "No arrangable objects are selected."
+msgid "No arrangeable objects are selected."
 msgstr ""
 
 msgid ""
@@ -1324,7 +1324,7 @@ msgstr ""
 msgid "Login failed"
 msgstr ""
 
-msgid "The region parameter is incorrrect"
+msgid "The region parameter is incorrect"
 msgstr ""
 
 msgid "Failure of printer login"
@@ -1380,7 +1380,7 @@ msgstr ""
 msgid "Service Unavailable"
 msgstr ""
 
-msgid "Unkown Error."
+msgid "Unknown Error."
 msgstr ""
 
 msgid "Sending print configuration"
@@ -2003,7 +2003,7 @@ msgid ""
 msgstr ""
 
 msgid ""
-"This setting is only used for model size tunning with small value in some "
+"This setting is only used for model size tuning with small value in some "
 "cases.\n"
 "For example, when model size has small error and hard to be assembled.\n"
 "For large size tuning, please use model scale function.\n"
@@ -2069,8 +2069,8 @@ msgstr ""
 
 msgid ""
 "Switch to rectilinear pattern?\n"
-"Yes - switch to rectilinear pattern automaticlly\n"
-"No  - reset density to default non 100% value automaticlly"
+"Yes - switch to rectilinear pattern automatically\n"
+"No  - reset density to default non 100% value automatically"
 msgstr ""
 
 msgid ""
@@ -2554,7 +2554,7 @@ msgstr ""
 msgid "Size:"
 msgstr ""
 
-msgid "An object is layed over the boundary of plate."
+msgid "An object is over the boundary of plate."
 msgstr ""
 
 msgid "A G-code path goes beyond the boundary of plate."
@@ -3679,8 +3679,8 @@ msgstr ""
 
 msgid ""
 "The nozzle hardness required by the filament is higher than the default "
-"nozzle hardness of the printer. Please replace the hardened nozzle or "
-"filament, otherwise, the nozzle will be attrited or damaged."
+"nozzle hardness of the printer. Please replace the nozzle or the"
+"filament, otherwise, the nozzle will be abraded or damaged."
 msgstr ""
 
 #, possible-c-format, possible-boost-format
@@ -3984,9 +3984,9 @@ msgstr ""
 
 #, possible-c-format, possible-boost-format
 msgid ""
-"Plate% d: %s is not suggested to be used to print filament %s(%s). If you "
+"Plate% d: %s is not recommended for printing with %s(%s) filament. If you "
 "still want to do this printing, please set this filament's bed temperature "
-"to non zero."
+"a non-zero value
 msgstr ""
 
 msgid "Switching the language requires application restart.\n"
@@ -4572,7 +4572,7 @@ msgid "Click to reset all settings to the last saved preset."
 msgstr ""
 
 msgid ""
-"Prime tower is required for smooth timeplase. There may be flaws on the "
+"Prime tower is required for smooth timelapse. There may be flaws on the "
 "model without prime tower. Are you sure you want to disable prime tower?"
 msgstr ""
 
@@ -6510,7 +6510,7 @@ msgid "Fuzzy skin point distance"
 msgstr ""
 
 msgid ""
-"The average diatance between the random points introducded on each line "
+"The average distance between the random points introduced on each line "
 "segment"
 msgstr ""
 
@@ -6549,7 +6549,7 @@ msgid ""
 "nozzle, and what kind of filament can be printed"
 msgstr ""
 
-msgid "Undefine"
+msgid "Undefined"
 msgstr ""
 
 msgid "Hardened steel"
@@ -6631,7 +6631,7 @@ msgstr ""
 
 msgid ""
 "The amount of material to extrude during ironing. Relative to flow of normal "
-"layer height. Too high value results in overextrusion on the surface"
+"layer height. Too high value results in over-extrusion on the surface"
 msgstr ""
 
 msgid "Ironing line spacing"
@@ -6783,7 +6783,7 @@ msgstr ""
 
 msgid ""
 "The largest printable layer height for extruder. Used tp limits the maximum "
-"layer hight when enable adaptive layer height"
+"layer height when enable adaptive layer height"
 msgstr ""
 
 msgid "Minimum speed for part cooling fan"
@@ -7521,7 +7521,7 @@ msgstr ""
 msgid ""
 "This option will auto detect narrow internal solid infill area. If enabled, "
 "concentric pattern will be used for the area to speed printing up. "
-"Otherwise, rectilinear pattern is used defaultly."
+"Otherwise, rectilinear pattern is used by default."
 msgstr ""
 
 msgid "invalid value "

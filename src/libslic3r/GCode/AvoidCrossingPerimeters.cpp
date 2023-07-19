@@ -905,9 +905,9 @@ static std::vector<float> contour_distance(const EdgeGrid::Grid     &grid,
                 return Vec2d(-v1.y() - v2.y(), v1.x() + v2.x());
             }
 
-            static bool inside_corner(const EdgeGrid::Contour &contour, size_t i, const Point &pt_oposite)
+            static bool inside_corner(const EdgeGrid::Contour &contour, size_t i, const Point &pt_opposite)
             {
-                const Vec2d pt         = pt_oposite.cast<double>();
+                const Vec2d pt         = pt_opposite.cast<double>();
                 const Point &pt_prev   = contour.segment_prev(i);
                 const Point &pt_this   = contour.segment_start(i);
                 const Point &pt_next   = contour.segment_end(i);
@@ -919,9 +919,9 @@ static std::vector<float> contour_distance(const EdgeGrid::Grid     &grid,
                                             left_of_v1 || left_of_v2;                   // concave corner
             }
 
-            static bool left_of_segment(const EdgeGrid::Contour &contour, size_t i, const Point &pt_oposite)
+            static bool left_of_segment(const EdgeGrid::Contour &contour, size_t i, const Point &pt_opposite)
             {
-                const Vec2d  pt      = pt_oposite.cast<double>();
+                const Vec2d  pt      = pt_opposite.cast<double>();
                 const Point &pt_this = contour.segment_start(i);
                 const Point &pt_next = contour.segment_end(i);
                 Vec2d        v       = (pt_next - pt_this).cast<double>();
@@ -1489,7 +1489,7 @@ static ExPolygons get_boundary(const Layer &layer)
     ExPolygons result_boundary;
     if (perimeter_boundary.size() != boundary.size()) {
         //FIXME ???
-        // If any part of the polygon is missing after shrinking, then for misisng parts are is used the boundary of the slice.
+        // If any part of the polygon is missing after shrinking, then for missing parts are is used the boundary of the slice.
         ExPolygons missing_perimeter_boundary = offset_ex(diff_ex(boundary,
                                                                   offset_ex(perimeter_boundary, perimeter_offset + float(SCALED_EPSILON) / 2.f)),
                                                           perimeter_offset + float(SCALED_EPSILON));

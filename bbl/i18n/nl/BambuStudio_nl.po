@@ -4302,9 +4302,9 @@ msgstr ""
 
 #, c-format, boost-format
 msgid ""
-"Plate% d: %s is not suggested to be used to print filament %s(%s). If you "
+"Plate% d: %s is not recommended for printing with %s(%s) filament. If you "
 "still want to do this printing, please set this filament's bed temperature "
-"to non zero."
+"a non-zero value
 msgstr ""
 
 msgid "Switching the language requires application restart.\n"
@@ -8445,7 +8445,7 @@ msgstr "Detecteer dichte interne solide vulling (infill)"
 msgid ""
 "This option will auto detect narrow internal solid infill area. If enabled, "
 "concentric pattern will be used for the area to speed printing up. "
-"Otherwise, rectilinear pattern is used defaultly."
+"Otherwise, rectilinear pattern is used by default."
 msgstr ""
 "Deze optie detecteert automatisch smalle interne solide opvul (infill) "
 "gebieden. Indien ingeschakeld, wordt het concentrische patroon gebruikt voor "

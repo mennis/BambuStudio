@@ -44,7 +44,7 @@
 #include "slic3r/GUI/MonitorBasePanel.h"
 #include "slic3r/GUI/StatusPanel.hpp"
 #include "slic3r/GUI/UpgradePanel.hpp"
-#include "slic3r/GUI/AmsWidgets.hpp"
+#include "slic3r/GUI/AMSWidgets.hpp"
 #include "Widgets/SideTools.hpp"
 
 #define AUFILE_GREY700 wxColour(107, 107, 107)
@@ -180,7 +180,7 @@ public:
     ~DesignerPanel();
 
     ::TextInput*        m_input_designer {nullptr};
-    ::TextInput*        m_imput_model_name {nullptr};
+    ::TextInput*        m_input_model_name {nullptr};
     //wxComboBox*         m_combo_license {nullptr};
     bool Show(bool show) override;
     void                init_license_list();

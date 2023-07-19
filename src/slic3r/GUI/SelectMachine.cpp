@@ -950,8 +950,8 @@ wxString SelectMachineDialog::format_text(wxString &m_msg)
 SelectMachineDialog::SelectMachineDialog(Plater *plater)
     : DPIDialog(static_cast<wxWindow *>(wxGetApp().mainframe), wxID_ANY, _L("Send print job to"), wxDefaultPosition, wxDefaultSize, wxCAPTION | wxCLOSE_BOX)
     , m_plater(plater), m_export_3mf_cancel(false)
-    , m_mapping_popup(AmsMapingPopup(this))
-    , m_mapping_tip_popup(AmsMapingTipPopup(this))
+    , m_mapping_popup(AMSMappingPopup(this))
+    , m_mapping_tip_popup(AmsMappingTipPopup(this))
     , m_mapping_tutorial_popup(AmsTutorialPopup(this))
 {
 #ifdef __WINDOWS__

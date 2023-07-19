@@ -858,7 +858,7 @@ StringObjectException Print::check_multi_filament_valid(const Print& print)
 
 // Precondition: Print::validate() requires the Print::apply() to be called its invocation.
 //BBS: refine seq-print validation logic
-StringObjectException Print::validate(StringObjectException *warning, Polygons* collison_polygons, std::vector<std::pair<Polygon, float>>* height_polygons) const
+StringObjectException Print::validate(StringObjectException *warning, Polygons* _collision_polygons, std::vector<std::pair<Polygon, float>>* height_polygons) const
 {
     std::vector<unsigned int> extruders = this->extruders();
 
@@ -879,7 +879,7 @@ StringObjectException Print::validate(StringObjectException *warning, Polygons* 
             return {L("Smooth mode of timelapse is not supported when \"by object\" sequence is enabled.")};
 
         //BBS: refine seq-print validation logic
-        auto ret = sequential_print_clearance_valid(*this, collison_polygons, height_polygons);
+        auto ret = sequential_print_clearance_valid(*this, _collision_polygons, height_polygons);
     	if (!ret.string.empty())
             return ret;
     }

@@ -125,7 +125,7 @@ struct NfpPConfig {
     //BBS: excluded region for V4 bed
     std::vector<_Item<RawShape> > m_excluded_regions;
     _ItemGroup<RawShape> m_excluded_items;
-    std::vector < _Item<RawShape> > m_nonprefered_regions;
+    std::vector < _Item<RawShape> > m_nonpreferred_regions;
 
     NfpPConfig(): rotations({0.0, Pi/2.0, Pi, 3*Pi/2}),
         alignment(Alignment::CENTER), starting_point(Alignment::CENTER) {}

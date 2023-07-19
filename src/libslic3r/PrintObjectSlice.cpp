@@ -539,7 +539,7 @@ std::vector<VolumeSlices> findPartVolumes(const std::vector<VolumeSlices>& objSl
     return outPut;
 }
 
-void applyNegtiveVolumes(ModelVolumePtrs model_volumes, const std::vector<VolumeSlices>& objSliceByVolume, std::vector<groupedVolumeSlices>& groups, double resolution) {
+void applyNegativeVolumes(ModelVolumePtrs model_volumes, const std::vector<VolumeSlices>& objSliceByVolume, std::vector<groupedVolumeSlices>& groups, double resolution) {
     ExPolygons negTotal;
     for (const auto& vs : objSliceByVolume) {
         for (const auto& mv : model_volumes) {
@@ -704,7 +704,7 @@ std::string fix_slicing_errors(PrintObject* object, LayerPtrs &layers, const std
     const auto           scaled_resolution = scaled<double>(object->print()->config().resolution.value);
     auto partsObjSliceByVolume = findPartVolumes(object->firstLayerObjSliceMod(), object->model_object()->volumes);
     groupingVolumes(partsObjSliceByVolume, object->firstLayerObjGroupsMod(), scaled_resolution, firstLayerReplacedBy);
-    applyNegtiveVolumes(object->model_object()->volumes, object->firstLayerObjSliceMod(), object->firstLayerObjGroupsMod(), scaled_resolution);
+    applyNegativeVolumes(object->model_object()->volumes, object->firstLayerObjSliceMod(), object->firstLayerObjGroupsMod(), scaled_resolution);
 
     // BBS: the actual first layer slices stored in layers are re-sorted by volume group and will be used to generate brim
     reGroupingLayerPolygons(object->firstLayerObjGroupsMod(), layers.front()->lslices);
@@ -932,7 +932,7 @@ void PrintObject::slice_volumes()
     //const auto           scaled_resolution = scaled<double>(print->config().resolution.value);
     //firstLayerObjSliceByVolume = findPartVolumes(objSliceByVolume, this->model_object()->volumes);
     //groupingVolumes(objSliceByVolumeParts, firstLayerObjSliceByGroups, scaled_resolution);
-    //applyNegtiveVolumes(this->model_object()->volumes, objSliceByVolume, firstLayerObjSliceByGroups, scaled_resolution);
+    //applyNegativeVolumes(this->model_object()->volumes, objSliceByVolume, firstLayerObjSliceByGroups, scaled_resolution);
     firstLayerObjSliceByVolume = objSliceByVolume;
 
     std::vector<std::vector<ExPolygons>> region_slices = slices_to_regions(this->model_object()->volumes, *m_shared_regions, slice_zs,

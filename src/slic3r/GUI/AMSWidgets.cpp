@@ -1,4 +1,4 @@
-#include "AmsWidgets.hpp"
+#include "AMSWidgets.hpp"
 #include <wx/button.h>
 #include <wx/sizer.h>
 #include <wx/dataview.h>
@@ -36,11 +36,11 @@ void TrayListModel::GetValueByRow(wxVariant& variant,
         else
             variant = m_colorColValues[row];
         break;
-    case Col_TrayMeterial:
-        if (row >= m_meterialColValues.GetCount())
+    case Col_TrayMaterial:
+        if (row >= m_materialColValues.GetCount())
             variant = wxString::Format("N/A", row);
         else
-            variant = m_meterialColValues[row];
+            variant = m_materialColValues[row];
         break;
     case Col_TrayWeight:
         if (row >= m_weightColValues.GetCount())
@@ -108,7 +108,7 @@ bool TrayListModel::SetValueByRow(const wxVariant& variant,
     {
     case Col_TrayTitle:
     case Col_TrayColor:
-    case Col_TrayMeterial:
+    case Col_TrayMaterial:
     case Col_TrayWeight:
     case Col_TrayDiameter:
     case Col_TrayTime:
@@ -130,7 +130,7 @@ void TrayListModel::update(MachineObject* obj)
 
     m_titleColValues.clear();
     m_colorColValues.clear();
-    m_meterialColValues.clear();
+    m_materialColValues.clear();
     m_weightColValues.clear();
     m_diameterColValues.clear();
     m_timeColValues.clear();
@@ -152,8 +152,8 @@ void TrayListModel::update(MachineObject* obj)
                     m_titleColValues.push_back(title_text);
                     wxString color_text = wxString::Format("%s", tray->wx_color.GetAsString());
                     m_colorColValues.push_back(color_text);
-                    wxString meterial_text = wxString::Format("%s", tray->type);
-                    m_meterialColValues.push_back(meterial_text);
+                    wxString material_text = wxString::Format("%s", tray->type);
+                    m_materialColValues.push_back(material_text);
                     wxString weight_text = wxString::Format("%sg", tray->weight);
                     m_weightColValues.push_back(weight_text);
                     wxString diameter_text = wxString::Format("%0.2f", tray->diameter);
@@ -182,7 +182,7 @@ void TrayListModel::clear_data()
 {
     m_titleColValues.clear();
     m_colorColValues.clear();
-    m_meterialColValues.clear();
+    m_materialColValues.clear();
     m_weightColValues.clear();
     m_diameterColValues.clear();
     m_timeColValues.clear();

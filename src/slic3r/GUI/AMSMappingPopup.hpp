@@ -1,5 +1,5 @@
-#ifndef slic3r_GUI_AmsMappingPopup_hpp_
-#define slic3r_GUI_AmsMappingPopup_hpp_
+#ifndef slic3r_GUI_AMSMappingPopup_hpp_
+#define slic3r_GUI_AMSMappingPopup_hpp_
 
 #include <wx/wx.h>
 #include <wx/intl.h>
@@ -98,7 +98,7 @@ public:
     ~MappingItem();
 
 	void update_data(TrayData data);
-    void send_event(int fliament_id);
+    void send_event(int filament_id);
     void set_tray_index(wxString t_index) {m_tray_index = t_index;};
 
     wxString m_tray_index;
@@ -125,12 +125,12 @@ public:
     void doRender(wxDC& dc);
 };
 
-class AmsMapingPopup : public PopupWindow
+class AMSMappingPopup : public PopupWindow
 {
 public:
-    AmsMapingPopup(wxWindow *parent);
+    AMSMappingPopup(wxWindow *parent);
     wxString format_text(wxString &m_msg);
-    ~AmsMapingPopup(){};
+    ~AMSMappingPopup(){};
 
     wxStaticText *           m_warning_text{nullptr}; 
     std::vector<std::string> m_materials_list;
@@ -158,11 +158,11 @@ public:
     std::vector<TrayData> parse_ams_mapping(std::map<std::string, Ams*> amsList);
 };
 
-class AmsMapingTipPopup : public PopupWindow
+class AmsMappingTipPopup : public PopupWindow
 {
 public:
-    AmsMapingTipPopup(wxWindow *parent);
-    ~AmsMapingTipPopup(){};
+    AmsMappingTipPopup(wxWindow *parent);
+    ~AmsMappingTipPopup(){};
     void paintEvent(wxPaintEvent &evt);
 
     virtual void OnDismiss() wxOVERRIDE;
@@ -209,7 +209,7 @@ public:
     wxStaticText* tip_bottom;
     wxStaticBitmap* img_middle;
     wxStaticText* tip_middle;
-    wxStaticBitmap* img_botton;
+    wxStaticBitmap* img_bottom;
 
     AmsTutorialPopup(wxWindow* parent);
     ~AmsTutorialPopup() {};

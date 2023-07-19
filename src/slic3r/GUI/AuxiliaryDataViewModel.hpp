@@ -116,7 +116,7 @@ public:
     void Init(wxString aux_path);
     void Reload(wxString aux_path);
 
-    // override sorting to always sort branches ascendingly
+    // override sorting to always ascending sort on branches
 
     int Compare(const wxDataViewItem& item1, const wxDataViewItem& item2,
         unsigned int column, bool ascending) const wxOVERRIDE;

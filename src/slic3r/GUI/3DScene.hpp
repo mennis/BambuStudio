@@ -266,7 +266,7 @@ public:
     static std::array<float, 4> UNPRINTABLE_COLOR;
     static std::array<std::array<float, 4>, 5> MODEL_COLOR;
     static std::array<float, 4> MODEL_MIDIFIER_COL;
-    static std::array<float, 4> MODEL_NEGTIVE_COL;
+    static std::array<float, 4> MODEL_Negative_COL;
     static std::array<float, 4> SUPPORT_ENFORCER_COL;
     static std::array<float, 4> SUPPORT_BLOCKER_COL;
     static std::array<float, 4> MODEL_HIDDEN_COL;

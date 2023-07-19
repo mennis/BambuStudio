@@ -24,7 +24,7 @@ namespace igl
   //   squared  whether to return squared distances
   // Outputs:
   //   D  #V by #U matrix of distances, where D(i,j) gives the distance or
-  //     squareed distance between V(i,:) and U(j,:)
+  //     squared distance between V(i,:) and U(j,:)
   // 
   template <typename Mat>
   IGL_INLINE void all_pairs_distances(

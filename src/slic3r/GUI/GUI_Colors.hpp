@@ -15,7 +15,7 @@ enum RenderCol_ {
     RenderCol_Model_Neutral,
     RenderCol_Part,
     RenderCol_Modifier,
-    RenderCol_Negtive_Volume,
+    RenderCol_Negative_Volume,
     RenderCol_Support_Enforcer,
     RenderCol_Support_Blocker,
     RenderCol_Axis_X,

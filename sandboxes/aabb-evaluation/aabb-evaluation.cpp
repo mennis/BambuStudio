@@ -128,7 +128,7 @@ void profile(const TriangleMesh &mesh)
         }
     }
 
-    // Build the AABB accelaration tree
+    // Build the AABB acceleration tree
 
     Eigen::MatrixXd occlusion_output2;
     {

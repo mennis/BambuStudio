@@ -1,5 +1,5 @@
-#ifndef slic3r_AmsWidgets_hpp_
-#define slic3r_AmsWidgets_hpp_
+#ifndef slic3r_AMSWidgets_hpp_
+#define slic3r_AMSWidgets_hpp_
 
 
 #include <wx/notebook.h>
@@ -51,7 +51,7 @@ public:
 	{
 		Col_TrayTitle,
 		Col_TrayColor,
-		Col_TrayMeterial,
+		Col_TrayMaterial,
 		Col_TrayWeight,
 		Col_TrayDiameter,
 		Col_TrayTime,
@@ -88,7 +88,7 @@ public:
 private:
 	wxArrayString m_titleColValues;
 	wxArrayString m_colorColValues;
-	wxArrayString m_meterialColValues;
+	wxArrayString m_materialColValues;
 	wxArrayString m_weightColValues;
 	wxArrayString m_diameterColValues;
 	wxArrayString m_timeColValues;

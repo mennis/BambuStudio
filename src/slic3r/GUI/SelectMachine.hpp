@@ -24,7 +24,7 @@
 #include <wx/wrapsizer.h>
 #include <wx/srchctrl.h>
 
-#include "AmsMappingPopup.hpp"
+#include "AMSMappingPopup.hpp"
 #include "ReleaseNote.hpp"
 #include "GUI_Utils.hpp"
 #include "wxExtensions.hpp"
@@ -398,8 +398,8 @@ protected:
     wxGauge *                    m_gauge_job_progress{nullptr};
     wxPanel *                    m_panel_status{nullptr};
     wxButton *                   m_button_cancel{nullptr};
-    AmsMapingPopup               m_mapping_popup{nullptr};
-    AmsMapingTipPopup            m_mapping_tip_popup{nullptr};
+    AMSMappingPopup               m_mapping_popup{nullptr};
+    AmsMappingTipPopup            m_mapping_tip_popup{nullptr};
     AmsTutorialPopup             m_mapping_tutorial_popup{nullptr};
     wxString                     m_current_project_name;
     std::string                  m_print_info;

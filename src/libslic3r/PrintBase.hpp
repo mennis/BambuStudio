@@ -391,7 +391,7 @@ public:
 
     // Validate the print, return empty string if valid, return error if process() cannot (or should not) be started.
     //BBS: add more paremeters to validate
-    virtual StringObjectException validate(StringObjectException *warning = nullptr, Polygons* collison_polygons = nullptr, std::vector<std::pair<Polygon, float>>* height_polygons = nullptr) const { return {}; }
+    virtual StringObjectException validate(StringObjectException *warning = nullptr, Polygons* _collision_polygons = nullptr, std::vector<std::pair<Polygon, float>>* height_polygons = nullptr) const { return {}; }
 
     enum ApplyStatus {
         // No change after the Print::apply() call.

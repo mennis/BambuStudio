@@ -1957,7 +1957,7 @@ void StatusPanel::update_ams(MachineObject *obj)
     last_ams_version      = obj->ams_version;
 
 
-    std::string curr_ams_id = m_ams_control->GetCurentAms();
+    std::string curr_ams_id = m_ams_control->GetCurrentAms();
     std::string curr_can_id = m_ams_control->GetCurrentCan(curr_ams_id);
     bool is_vt_tray = false;
     if (obj->m_tray_tar == std::to_string(VIRTUAL_TRAY_ID))
@@ -2559,7 +2559,7 @@ void StatusPanel::on_ams_load(SimpleEvent &event)
 void StatusPanel::on_ams_load_curr()
 {
     if (obj) {
-        std::string                            curr_ams_id = m_ams_control->GetCurentAms();
+        std::string                            curr_ams_id = m_ams_control->GetCurrentAms();
         std::string                            curr_can_id = m_ams_control->GetCurrentCan(curr_ams_id);
 
         //virtual tray
@@ -2633,7 +2633,7 @@ void StatusPanel::on_ams_setting_click(SimpleEvent &event)
     if (obj) {
         m_ams_setting_dlg->update_insert_material_read_mode(obj->ams_insert_flag);
         m_ams_setting_dlg->update_starting_read_mode(obj->ams_power_on_flag);
-        std::string ams_id = m_ams_control->GetCurentAms();
+        std::string ams_id = m_ams_control->GetCurrentAms();
         if (ams_id.compare(std::to_string(VIRTUAL_TRAY_ID)) == 0) {
             wxString txt = _L("AMS settings are not supported for external spool");
             MessageDialog msg_dlg(nullptr, txt, wxEmptyString, wxICON_WARNING | wxOK);
@@ -2660,7 +2660,7 @@ void StatusPanel::on_filament_extrusion_cali(wxCommandEvent &event)
 
     if (obj) {
         m_extrusion_cali_dlg->obj = obj;
-        std::string ams_id = m_ams_control->GetCurentAms();
+        std::string ams_id = m_ams_control->GetCurrentAms();
         std::string tray_id = m_ams_control->GetCurrentCan(ams_id);
         if (tray_id.empty() && ams_id.compare(std::to_string(VIRTUAL_TRAY_ID)) != 0) {
             wxString txt = _L("Please select an AMS slot before calibration");
@@ -2711,7 +2711,7 @@ void StatusPanel::on_filament_edit(wxCommandEvent &event)
     if (!m_filament_setting_dlg) m_filament_setting_dlg = new AMSMaterialsSetting((wxWindow *) this, wxID_ANY);
     if (obj) {
         m_filament_setting_dlg->obj = obj;
-        std::string ams_id          = m_ams_control->GetCurentAms();
+        std::string ams_id          = m_ams_control->GetCurrentAms();
         int ams_id_int = 0;
         int tray_id_int = 0;
         if (ams_id.compare(std::to_string(VIRTUAL_TRAY_ID)) == 0) {
@@ -2817,7 +2817,7 @@ void StatusPanel::on_ams_refresh_rfid(wxCommandEvent &event)
             return;
         }
 
-        std::string curr_ams_id = m_ams_control->GetCurentAms();
+        std::string curr_ams_id = m_ams_control->GetCurrentAms();
         // do not support refresh rfid for VIRTUAL_TRAY_ID
         if (curr_ams_id.compare(std::to_string(VIRTUAL_TRAY_ID)) == 0) {
             return;
@@ -2847,7 +2847,7 @@ void StatusPanel::on_ams_refresh_rfid(wxCommandEvent &event)
 void StatusPanel::on_ams_selected(wxCommandEvent &event)
 {
     if (obj) {
-        std::string curr_ams_id = m_ams_control->GetCurentAms();
+        std::string curr_ams_id = m_ams_control->GetCurrentAms();
         if (curr_ams_id.compare(std::to_string(VIRTUAL_TRAY_ID)) == 0) {
             //update_ams_control_state(curr_ams_id, true);
             return;

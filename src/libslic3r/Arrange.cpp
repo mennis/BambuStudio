@@ -77,7 +77,7 @@ using SpatIndex = bgi::rtree< SpatElement, bgi::rstar<16, 4> >;
 using ItemGroup = std::vector<std::reference_wrapper<Item>>;
 
 // A coefficient used in separating bigger items and smaller items.
-const double BIG_ITEM_TRESHOLD = 0.02;
+const double BIG_ITEM_THRESHOLD = 0.02;
 #define VITRIFY_TEMP_DIFF_THRSH 15  // bed temp can be higher than vitrify temp, but not higher than this thresh
 
 // Fill in the placer algorithm configuration with values carefully chosen for
@@ -114,9 +114,9 @@ void fill_config(PConf& pcfg, const ArrangeParams &params) {
     // BBS: excluded regions in BBS bed
     for (auto& poly : params.excluded_regions)
         process_arrangeable(poly, pcfg.m_excluded_regions);
-    // BBS: nonprefered regions in BBS bed
-    for (auto& poly : params.nonprefered_regions)
-        process_arrangeable(poly, pcfg.m_nonprefered_regions);
+    // BBS: nonpreferred regions in BBS bed
+    for (auto& poly : params.nonpreferred_regions)
+        process_arrangeable(poly, pcfg.m_nonpreferred_regions);
     for (auto& itm : pcfg.m_excluded_regions) {
         itm.markAsFixedInBin(0);
         itm.inflate(scaled(-2. * EPSILON));
@@ -153,7 +153,7 @@ static double fixed_overfit_topright_sliding(const std::tuple<double, Box> &resu
     auto diff = double(fullbb.area()) - binbb.area();
     if (diff > 0) score += diff;
 
-    // excluded regions and nonprefered regions should not intersect the translated pilebb
+    // excluded regions and nonpreferred regions should not intersect the translated pilebb
     for (auto &bb : excluded_boxes) {
         auto area_ = pilebb.intersection(bb).area();
         if (area_ > 0) score += area_;
@@ -196,7 +196,7 @@ protected:
     MultiPolygon m_merged_pile; // The already merged pile (vector of items)
     Box          m_pilebb;      // The bounding box of the merged pile.
     ItemGroup m_remaining;      // Remaining items
-    ItemGroup m_items;          // allready packed items
+    ItemGroup m_items;          // already packed items
     std::vector<Box> m_excluded_and_extruCali_regions;  // excluded and extrusion calib regions
     size_t    m_item_count = 0; // Number of all items to be packed
     ArrangeParams params;
@@ -241,7 +241,7 @@ protected:
         
         // We will treat big items (compared to the print bed) differently
         auto isBig = [bin_area](double a) {
-            return a/bin_area > BIG_ITEM_TRESHOLD ;
+            return a/bin_area > BIG_ITEM_THRESHOLD ;
         };
         
         // Candidate item bounding box
@@ -302,7 +302,7 @@ protected:
             dists[3] = pl::distance(top_left, cc);
             dists[4] = pl::distance(bottom_right, cc);
 
-            // The smalles distance from the arranged pile center:
+            // The smallest distance from the arranged pile center:
             double dist = norm(*(std::min_element(dists.begin(), dists.end())));
             if (m_pconf.starting_point == PConfig::Alignment::BOTTOM_LEFT) {
                 double bindist = dist_for_BOTTOM_LEFT(ibb, origin_pack);
@@ -415,7 +415,7 @@ protected:
                     double h = ix1 < px1 ? item.height : p.height;
                     hasRowHeightConflict |= (h > clearance_height_to_rod);
                 }
-                // only last item can be heigher than clearance_height_to_lid, so if the existing items are higher than clearance_height_to_lid, there is height conflict
+                // only last item can be higher than clearance_height_to_lid, so if the existing items are higher than clearance_height_to_lid, there is height conflict
                 hasLidHeightConflict |= (p.height > clearance_height_to_lid);
             }
 
@@ -494,7 +494,7 @@ public:
             Box  bb = region.boundingBox();
             m_excluded_and_extruCali_regions.emplace_back(bb);
         }
-        for (auto& region : m_pconf.m_nonprefered_regions) {
+        for (auto& region : m_pconf.m_nonpreferred_regions) {
             Box  bb = region.boundingBox();
             m_excluded_and_extruCali_regions.emplace_back(bb);
         }
@@ -522,7 +522,7 @@ public:
             
             // We will treat big items (compared to the print bed) differently
             auto isBig = [this](double a) {
-                return a / m_bin_area > BIG_ITEM_TRESHOLD ;
+                return a / m_bin_area > BIG_ITEM_THRESHOLD ;
             };
 
             for(unsigned idx = 0; idx < items.size(); ++idx) {
@@ -672,7 +672,7 @@ template<> std::function<double(const Item&, const ItemGroup&)> AutoArranger<Cir
         double score = std::get<0>(result);
         
         auto isBig = [this](const Item& itm) {
-            return itm.area() / m_bin_area > BIG_ITEM_TRESHOLD ;
+            return itm.area() / m_bin_area > BIG_ITEM_THRESHOLD ;
         };
         
         if(isBig(item)) {
